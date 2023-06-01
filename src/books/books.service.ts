@@ -26,7 +26,7 @@ export class BooksService
     return book.save();
   }
 
-  update(id: string, data: BookCreateDto): QueryWithHelpers<HydratedDocument<BookDocument, {}, {}> | null, HydratedDocument<BookDocument, {}, {}>, {}, BookDocument> 
+  update(id: string, data: BookCreateDto): Promise<BookDocument>
   {
     return this.BookModel.findOneAndUpdate(
         { _id: id },
@@ -34,7 +34,8 @@ export class BooksService
     );
   }
 
-  delete(id: string): QueryWithHelpers<HydratedDocument<BookDocument, {}, {}> | null, HydratedDocument<BookDocument, {}, {}>, {}, BookDocument> {
+  delete(id: string): Promise<BookDocument> 
+  {
     return this.BookModel.findOneAndRemove({ _id: id });
   }
 }

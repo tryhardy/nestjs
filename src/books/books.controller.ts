@@ -25,12 +25,12 @@ export class BooksController {
   public update(
       @Param() { id }: ParamId,
       @Body() body: BookCreateDto,
-  ): QueryWithHelpers<HydratedDocument<BookDocument, {}, {}> | null, HydratedDocument<BookDocument, {}, {}>, {}, BookDocument> {
+  ): Promise<BookDocument> {
       return this.service.update(id, body);
   }
 
   @Delete(':id')
-  public delete(@Param() { id }: ParamId): QueryWithHelpers<HydratedDocument<BookDocument, {}, {}> | null, HydratedDocument<BookDocument, {}, {}>, {}, BookDocument> {
+  public delete(@Param() { id }: ParamId): Promise<BookDocument> {
       return this.service.delete(id);
   }
 }
