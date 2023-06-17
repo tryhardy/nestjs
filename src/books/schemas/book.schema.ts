@@ -15,7 +15,7 @@ export class Book
     public description: string
 
     @Prop()
-    public text: string
+    public authors: string
 
 }
 
