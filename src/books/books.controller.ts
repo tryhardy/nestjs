@@ -5,10 +5,16 @@ import { BooksService } from './books.service';
 import { BookCreateDto } from './interfaces/dto/book_create';
 import { BookDocument } from './schemas/book.schema';
 import { ParamId } from './interfaces/param_id'
+import { pipe } from 'rxjs';
 
 @Controller('/books')
 export class BooksController {
   constructor(private readonly service: BooksService) {}
+
+  @Get(':id')
+  getBook(): Promise<BookDocument[]> {
+    return this.service.getAll();
+  }
 
   @Get()
   getAll(): Promise<BookDocument[]> {

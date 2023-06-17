@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ValidationPipe } from "./pipes/validation.pipe";
 
 @Controller()
 export class AppController {
@@ -8,5 +9,10 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('test/:code')
+  getTest(@Param('code', ValidationPipe) code: string): string {
+    return code;
   }
 }
