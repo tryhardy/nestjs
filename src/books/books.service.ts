@@ -4,7 +4,7 @@ import { InjectModel, InjectConnection} from '@nestjs/mongoose'
 
 import { Book as BookInterface } from './interfaces/book';
 import { Book, BookDocument } from './schemas/book.schema';
-import { BookCreateDto } from './interfaces/dto/book_create';
+import { BookCreateDto } from './interfaces/dto/book.create';
 
 @Injectable()
 export class BooksService 

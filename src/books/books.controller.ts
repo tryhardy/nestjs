@@ -1,11 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UsePipes, UseGuards } from '@nestjs/common';
 
 import { BookSchema } from "./validation/schemas/book.schema";
 import { JoiValidationPipe } from "./validation/joi.validation.pipe";
 import { BooksService } from './books.service';
-import { BookCreateDto } from './interfaces/dto/book_create';
+import { BookCreateDto } from './interfaces/dto/book.create';
 import { BookDocument } from './schemas/book.schema';
 import { ParamId } from './interfaces/param_id';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/books')
 export class BooksController {

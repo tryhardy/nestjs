@@ -1,7 +1,9 @@
-import { Controller, Get, Param, UsePipes } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards, UsePipes } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ValidationPipe } from "./pipes/validation.pipe";
+import { ValidationPipe } from "./validation.pipe";
+import { AuthGuard } from './auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
