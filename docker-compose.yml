@@ -21,6 +21,7 @@ services:
     environment:
       - PORT=${PORT}
       - MONGO_URL=${MONGO_URL}
+      - JWT_SECRET=${JWT_SECRET}
     ports:
       - ${LOCAL_PORT}:${PORT}
     working_dir: /app

@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
+import 'dotenv/config';
 import { AuthController } from './auth.controller';
 import 'dotenv/config';
 
@@ -12,7 +12,7 @@ import 'dotenv/config';
     UsersModule,
     JwtModule.register({
       global: true,
-      secret: jwtConstants.secret,
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '360s' },
     }),
   ],
