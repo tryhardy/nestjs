@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, getModelToken } from '@nestjs/mongoose';
 
 import { BooksController } from './books.controller';
 import { BooksService } from './books.service';
 import { Book, BookSchema } from './schemas/book.schema';
+
+const BookModel = {
+  title: 'test',
+  description: 'test',
+  authors: 'test'
+};
 
 @Module({
   imports: [
@@ -15,7 +21,9 @@ import { Book, BookSchema } from './schemas/book.schema';
     ])
   ],
   controllers: [BooksController],
-  providers: [BooksService],
+  providers: [
+    BooksService,
+  ],
   exports:[BooksService]
 })
 export class BooksModule {
