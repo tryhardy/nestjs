@@ -10,25 +10,24 @@ import { BookCreateDto } from './interfaces/dto/book.create';
 export class BooksService 
 {
   constructor(
-    @InjectModel(Book.name) private BookModel: Model<BookDocument>,
-    @InjectConnection() private connection: Connection
+    @InjectModel(Book.name) private bookModel: Model<BookDocument>
   ) {}
 
-  getAll()
+  getAll(): Promise<BookDocument[]> 
   {
-    return this.BookModel.find().exec();
+    return this.bookModel.find().exec();
   }
 
   create(data: BookCreateDto): Promise<BookDocument> 
   {
-    const book = new this.BookModel(data);
+    const book = new this.bookModel(data);
 
     return book.save();
   }
 
   update(id: string, data: BookCreateDto): Promise<BookDocument>
   {
-    return this.BookModel.findOneAndUpdate(
+    return this.bookModel.findOneAndUpdate(
         { _id: id },
         data,
     );
@@ -36,6 +35,6 @@ export class BooksService
 
   delete(id: string): Promise<BookDocument> 
   {
-    return this.BookModel.findOneAndRemove({ _id: id });
+    return this.bookModel.findOneAndRemove({ _id: id });
   }
 }

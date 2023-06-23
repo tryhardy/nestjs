@@ -20,7 +20,7 @@ services:
       - ./:/app
     environment:
       - PORT=${PORT}
-      - MONGO_URL=${MONGO_URL}
+      - MONGO_URL=${MONGO_DOCKER_URL}
       - JWT_SECRET=${JWT_SECRET}
     ports:
       - ${LOCAL_PORT}:${PORT}
