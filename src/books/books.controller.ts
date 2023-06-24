@@ -18,22 +18,21 @@ export class BooksController {
 
   @UsePipes(new JoiValidationPipe(BookSchema))
   @Post()
-  public create(@Body() body: BookCreateDto): Promise<Book>
+  create(@Body() body: BookCreateDto): Promise<Book>
   {
     return this.service.create(body);
   }
 
-  @UsePipes(new JoiValidationPipe(BookSchema))
   @Put(':id')
-  public update(
+  update(
       @Param() { id }: ParamId,
-      @Body() body: BookCreateDto,
+      @Body(new JoiValidationPipe(BookSchema)) body: BookCreateDto
   ): Promise<Book> {
       return this.service.update(id, body);
   }
 
   @Delete(':id')
-  public delete(@Param() { id }: ParamId): Promise<Book> {
+  delete(@Param() { id }: ParamId): Promise<Book> {
       return this.service.delete(id);
   }
 }
