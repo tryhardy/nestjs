@@ -15,8 +15,7 @@ export class Book
     public description: string
 
     @Prop()
-    public authors: string
-
+    public authors: string 
 }
 
 export const BookSchema = SchemaFactory.createForClass(Book)

@@ -3,12 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { getModelToken } from '@nestjs/mongoose';
 
-import { BooksService } from '../books.service';
-import { BookModel } from './models/book.model';
+import { BooksService } from '../services/books.service';
 import { BookStub } from './stubs/book.stub';
-import { Book } from '../schemas/book.schema';
 import { BooksController } from '../books.controller';
-import { BooksModule } from '../books.module';
 
 describe('BooksController (e2e)', () => {
   let id = '123456';

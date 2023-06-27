@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Book } from '../schemas/book.schema';
 import { BooksController } from '../books.controller';
-import { BooksService } from '../books.service';
+import { BooksService } from '../services/books.service';
 import { BookModel } from './models/book.model';
 import { BookStub } from './stubs/book.stub';
 

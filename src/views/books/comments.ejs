@@ -1,0 +1,26 @@
+<% if(comments.length > 0) { %>
+    <table class="table mt-5 mb-5">
+        <tbody>
+
+            <% comments.map((el, idx) => {  %>
+                <% if(el.name && el.comment) { %>
+                    <tr>
+                        <td>
+                            <div><b>Имя:</b> <%= el.name %></div>
+                            <div><%= el.comment %></div>
+                        </td>
+                    </tr>
+                <% } %>    
+            <% }) %>
+
+        </tbody>
+    </table>
+<% } else { %>   
+    <p class="mt-5 mb-5">Комментариев пока нет</h3>
+<% } %>
+
+<script>
+    $(document).ready(function(){
+        const socket = io();
+    })
+</script>

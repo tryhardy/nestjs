@@ -1,0 +1,63 @@
+<form id="addComment" method="POST" action="<%= path %>" class="mt-0">
+    <input type="hidden" name="bookId" value="<%= bookId %>">
+    <div class="form-group">
+        <label for="inputTitle">Имя</label>
+        <input type="text"
+               value=""
+               name="name"
+               class="form-control"
+               id="inputTitle">
+    </div>
+
+    <div class="form-group">
+        <label for="inputDesc">Описание</label>
+        <textarea
+                rows="3"
+                required
+                name="comment"
+                class="form-control"
+                id="comment"
+        ></textarea>
+    </div>
+
+    <div class="form-group text-right ">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function(){
+        const socket = io.connect();
+
+        getAllComments();
+
+        $("#addComment").on('submit', function(e)
+        {
+            e.preventDefault();
+
+            let form = e.target;
+            let data = $(this).serializeArray();
+            
+            let object = {};
+            for (let i = 0; i < data.length; i++) {
+                object[data[i].name] = data[i].value
+            }
+            object.comment = $('#comment').val();
+
+            socket.emit('addComment', object, (response) => {
+                console.log(response)
+                getAllComments();
+            })
+        })
+
+        function getAllComments()
+        {
+            const bookId = '<%= bookId %>';
+
+            socket.emit('getAllComments', bookId, (response) => {
+                console.log(response)
+            });
+        }
+
+    })
+</script>
